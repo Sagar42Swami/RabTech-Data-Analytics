@@ -1,0 +1,11 @@
+kpi_id,kpi_name,definition,formula,grain,filters,owner,refresh_cadence
+KPI-01,Total Orders,Count of distinct order identifiers,COUNT(DISTINCT order_id),Order,Exclude invalid or duplicate order_id records,Sales Operations,Daily
+KPI-02,Gross Sales,Sales value before discount,SUM(quantity * unit_price),Order,Valid quantity and non-negative unit price,Finance,Daily
+KPI-03,Discount Amount,Value removed through discounts,SUM(quantity * unit_price * discount_pct / 100),Order,Valid quantity and discount_pct between 0 and 100,Finance,Daily
+KPI-04,Net Sales,Sales after discount,SUM(quantity * unit_price * (1 - discount_pct / 100)),Order,Valid quantity and discount_pct between 0 and 100,Finance,Daily
+KPI-05,Units Sold,Total units purchased,SUM(quantity),Order,Quantity greater than zero,Sales Operations,Daily
+KPI-06,Average Order Value,Average net sales per distinct valid order,SUM(net_sales) / COUNT(DISTINCT order_id),Order,Valid sales records only,Finance,Daily
+KPI-07,Paid Order Rate,Share of distinct orders with Paid status,COUNT(DISTINCT paid order_id) / COUNT(DISTINCT valid order_id),Order,Normalize payment_status before aggregation,Finance,Daily
+KPI-08,Refund Rate,Share of distinct orders with Refunded status,COUNT(DISTINCT refunded order_id) / COUNT(DISTINCT valid order_id),Order,Normalize payment_status before aggregation,Finance,Daily
+KPI-09,Average Discount Rate,Average applied discount percentage,AVG(discount_pct),Order,Valid discount_pct between 0 and 100,Marketing,Daily
+KPI-10,Orders by Customer Segment,Distinct valid orders grouped by normalized segment,COUNT(DISTINCT order_id),Order,Normalize segment to Student/Fresher/Professional,Sales Operations,Daily
