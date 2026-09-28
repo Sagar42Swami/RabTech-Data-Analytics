@@ -1,0 +1,11 @@
+kpi_id,kpi_name,calculation_rule,reporting_note
+KPI-01,Total Orders,COUNT DISTINCT order_id after duplicate review,Do not count RT-1004 twice
+KPI-02,Gross Sales,SUM quantity multiplied by unit_price on valid sales rows,Exclude invalid quantity rows
+KPI-03,Discount Amount,SUM gross line value multiplied by discount_pct divided by 100,Exclude missing or out-of-range discounts
+KPI-04,Net Sales,Gross Sales minus Discount Amount,Publish only after critical validity checks pass
+KPI-05,Units Sold,SUM valid positive quantity,Exclude non-numeric and non-positive quantities
+KPI-06,Average Order Value,Net Sales divided by distinct valid orders,Use the same valid-order population as Net Sales
+KPI-07,Paid Order Rate,Distinct Paid orders divided by distinct valid orders,Normalize Paid/paid before aggregation
+KPI-08,Refund Rate,Distinct Refunded orders divided by distinct valid orders,Normalize status before aggregation
+KPI-09,Average Discount Rate,AVG valid discount_pct,Missing discount requires documented treatment
+KPI-10,Orders by Customer Segment,Distinct orders grouped by normalized segment,Normalize Student/student before aggregation
